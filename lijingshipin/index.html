@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="丽晶饰品官网，提供高品质时尚首饰、项链、耳环及定制服务。探索最新潮流设计，了解珠宝保养知识，享受优雅购物体验。">
+    <meta name="keywords" content="丽晶饰品, 丽晶珠宝, 时尚首饰, 项链, 耳环, 定制珠宝, 丽晶官网">
+    <title>丽晶饰品-时尚珠宝首饰与优雅定制服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #c5a47e;
+            --accent-hover: #b08d6b;
+            --bg-light: #f9f9f9;
+            --bg-white: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+            --header-height: 80px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Header */
+        header {
+            height: var(--header-height);
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: var(--header-height);
+            height: 600px;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/seed/jewelryhero/1920/1080');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Categories Section */
+        .categories {
+            background-color: var(--bg-light);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .category-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-link {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Featured Products */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: transparent;
+        }
+
+        .product-image {
+            height: 300px;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .product-price del {
+            color: #999;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            font-weight: 400;
+        }
+
+        /* Brand Story / About */
+        .about-section {
+            background-color: var(--bg-light);
+            display: flex;
+            align-items: center;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-list {
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 0.8rem;
+        }
+
+        /* Services / FAQ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-box {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .service-box h4 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .service-box p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .about-image {
+                order: -1;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background-color: white;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">丽晶<span>饰品</span></a>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">新品上市</a></li>
+                    <li><a href="#">经典系列</a></li>
+                    <li><a href="#">节日庆典</a></li>
+                    <li><a href="#">关于丽晶</a></li>
+                    <li><a href="#">联系客服</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-icons">
+                <button class="icon-btn" aria-label="搜索">🔍</button>
+                <button class="icon-btn" aria-label="购物车">🛒</button>
+                <button class="mobile-menu-btn icon-btn" onclick="toggleMenu()" aria-label="菜单">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>点亮生活，璀璨如初</h1>
+                <p>探索丽晶饰品精选系列，为每一个重要时刻增添独特光彩</p>
+                <div>
+                    <a href="#" class="btn">立即选购</a>
+                    <a href="#" class="btn btn-outline">了解品牌故事</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="section-padding categories">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">精选分类</h2>
+                    <p class="section-subtitle">根据您的风格与需求，发现属于您的完美饰品</p>
+                </div>
+                <div class="category-grid">
+                    <article class="category-card">
+                        <div class="category-icon">💍</div>
+                        <h3>时尚项链</h3>
+                        <p>简约锁骨链、精致吊坠，演绎优雅颈间风情。</p>
+                        <a href="#" class="category-link">查看全部 &rarr;</a>
+                    </article>
+                    <article class="category-card">
+                        <div class="category-icon">👂</div>
+                        <h3>精致耳饰</h3>
+                        <p>耳钉、耳环、耳骨夹，瞬间提升整体穿搭质感。</p>
+                        <a href="#" class="category-link">查看全部 &rarr;</a>
+                    </article>
+                    <article class="category-card">
+                        <div class="category-icon">✨</div>
+                        <h3>手链手镯</h3>
+                        <p>金属质感与宝石点缀，腕间流动的奢华魅力。</p>
+                        <a href="#" class="category-link">查看全部 &rarr;</a>
+                    </article>
+                    <article class="category-card">
+                        <div class="category-icon">💍</div>
+                        <h3>定制珠宝</h3>
+                        <p>专属设计，独一无二，记录您的人生高光时刻。</p>
+                        <a href="#" class="category-link">查看全部 &rarr;</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">本季热推</h2>
+                    <p class="section-subtitle">汇聚当季最流行的设计元素，品质与时尚并存</p>
+                </div>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <article class="product-card">
+                        <div class="product-image">
+                            <span class="badge">新品</span>
+                            <img src="https://picsum.photos/seed/necklace1/400/400" alt="流光幻彩珍珠项链">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">项链</div>
+                            <h3 class="product-title">流光幻彩珍珠项链</h3>
+                            <div class="product-price">¥ 1,299.00</div>
+                        </div>
+                    </article>
+
+                    <!-- Product 2 -->
+                    <article class="product-card">
+                        <div class="product-image">
+                            <img src="https://picsum.photos/seed/earring1/400/400" alt="星河碎钻耳钉">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">耳饰</div>
+                            <h3 class="product-title">星河碎钻耳钉</h3>
+                            <div class="product-price">¥ 599.00</div>
+                        </div>
+                    </article>
+
+                    <!-- Product 3 -->
+                    <article class="product-card">
+                        <div class="product-image">
+                            <span class="badge" style="background-color: #e74c3c;">热卖</span>
+                            <img src="https://picsum.photos/seed/bracelet1/400/400" alt="复古黄铜手镯">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">手链</div>
+                            <h3 class="product-title">复古黄铜手镯</h3>
+                            <div class="product-price"><del>¥ 899.00</del> ¥ 699.00</div>
+                        </div>
+                    </article>
+
+                    <!-- Product 4 -->
+                    <article class="product-card">
+                        <div class="product-image">
+                            <img src="https://picsum.photos/seed/ring1/400/400" alt="简约素圈戒指">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">戒指</div>
+                            <h3 class="product-title">简约素圈戒指</h3>
+                            <div class="product-price">¥ 399.00</div>
+                        </div>
+                    </article>
+                </div>
+                <div class="text-center" style="margin-top: 3rem;">
+                    <a href="#" class="btn" style="background-color: var(--primary-color);">浏览更多商品</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Story -->
+        <section class="section-padding about-section">
+            <div class="container">
+                <div class="about-container">
+                    <div class="about-image">
+                        <img src="https://picsum.photos/seed/jewelrymaking/600/500" alt="丽晶饰品制作工艺">
+                    </div>
+                    <div class="about-text">
+                        <h2>匠心工艺，传承经典</h2>
+                        <p>丽晶饰品自创立以来，始终秉承“以质取胜，以美动人”的理念。我们精选优质金属与天然宝石，结合现代设计美学，为您打造经得起时间考验的饰品。</p>
+                        <p>每一件丽晶饰品都经过严格的质检流程，从设计图纸到成品交付，力求完美。无论是日常佩戴的简约款，还是出席重要场合的华丽款，我们都能满足您对品质的追求。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>925银镀金工艺，防过敏耐用</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>天然宝石，色泽温润自然</span>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <span>终身免费清洗保养服务</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services & FAQ -->
+        <section class="section-padding" style="background-color: #f4f4f4;">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">服务保障</h2>
+                    <p class="section-subtitle">为您提供无忧的购物体验与完善的售后支持</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-box">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🚚</div>
+                        <h4>极速物流</h4>
+                        <p>全国大部分地区次日达，支持顺丰特快，确保礼物准时送达。</p>
+                    </div>
+                    <div class="service-box">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🛡️</div>
+                        <h4>假一赔十</h4>
+                        <p>承诺所有饰品均为正品，支持专业机构鉴定，假一赔十。</p>
+                    </div>
+                    <div class="service-box">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">↩️</div>
+                        <h4>无忧退换</h4>
+                        <p>7天无理由退换货，支持上门取件，让购物没有后顾之忧。</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="margin-bottom: 1rem; text-align: center;">常见问题解答</h3>
+                    <details style="margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 4px; cursor: pointer;">
+                        <summary style="font-weight: 600;">丽晶饰品的材质是什么？</summary>
+                        <p style="margin-top: 0.5rem; color: var(--text-secondary);">我们主要使用925纯银镀18K金、18K玫瑰金以及部分高端系列使用纯金。所有材质均通过国际标准检测，不易过敏。</p>
+                    </details>
+                    <details style="margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 4px; cursor: pointer;">
+                        <summary style="font-weight: 600;">如何进行饰品保养？</summary>
+                        <p style="margin-top: 0.5rem; color: var(--text-secondary);">建议避免接触香水、发胶等化学品。洗澡、游泳时请摘下饰品。平时不佩戴时，请放入密封袋中保存，防止氧化变色。</p>
+                    </details>
+                    <details style="margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 4px; cursor: pointer;">
+                        <summary style="font-weight: 600">支持定制服务吗？</summary>
+                        <p style="margin-top: 0.5rem; color: var(--text-secondary);">是的，丽晶提供私人定制服务。您可以选择款式、材质以及刻字，打造独一无二的专属饰品。</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 1rem; display: block;">丽晶<span>饰品</span></a>
+                    <p>丽晶饰品致力于为现代女性提供高品质、高性价比的时尚首饰。让每一次佩戴都成为自信的宣言。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>购物指南</h4>
+                    <ul>
+                        <li><a href="#">新品上市</a></li>
+                        <li><a href="#">热门榜单</a></li>
+                        <li><a href="#">促销活动</a></li>
+                        <li><a href="#">会员专享</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">尺码对照</a></li>
+                        <li><a href="#">配送说明</a></li>
+                        <li><a href="#">退换货政策</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <p>订阅我们的邮件，获取最新款式资讯与专属优惠。</p>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="email" placeholder="您的邮箱" style="padding: 8px; border-radius: 4px; border: none; width: 100%; outline: none;">
+                        <button style="padding: 8px 15px; background-color: var(--accent-color); color: white; border: none; border-radius: 4px; cursor: pointer;">订阅</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 丽晶饰品有限公司 版权所有. 本页面为设计演示，不涉及实际商业交易。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mainNav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+                          </html>

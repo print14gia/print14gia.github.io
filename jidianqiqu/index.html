@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="继电器驱动电路设计指南，涵盖继电器工作原理、单片机IO口驱动电路、三极管驱动电路、MOSFET驱动电路及常见故障排查，提供完整电路图与参数计算方法。">
+    <meta name="keywords" content="继电器驱动电路,继电器驱动,单片机IO口驱动,三极管驱动继电器,MOSFET驱动继电器,电路设计">
+    <title>继电器驱动电路-单片机IO口与三极管MOSFET驱动方案设计指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #004494;
+            --accent-color: #e6f0fa;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --border-color: #e1e4e8;
+            --code-bg: #282c34;
+            --code-text: #abb2bf;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* 主要内容区 */
+        main {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            color: var(--text-main);
+        }
+
+        /* 原理图模拟区 */
+        .circuit-overview {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .circuit-diagram {
+            background: #fff;
+            border: 1px dashed var(--border-color);
+            padding: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .circuit-diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .circuit-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .legend-item span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            border-radius: 2px;
+        }
+
+        /* 驱动方案对比 */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .card.bjt { border-top-color: #d4a017; }
+        .card.mosfet { border-top-color: #28a745; }
+        .card.driver { border-top-color: #17a2b8; }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .card ul li {
+            margin-bottom: 6px;
+        }
+
+        .card .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* 详细参数计算 */
+        .calc-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .calc-result {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .calc-result h4 {
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-value {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* 常见问题 */
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 6px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background: #fff;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: var(--accent-color);
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px 20px;
+            color: var(--text-secondary);
+            display: none;
+            border-top: 1px solid transparent;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            padding-top: 16px;
+            border-top-color: var(--border-color);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        .icon-plus {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--text-main);
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .faq-item.active .icon-plus {
+            border-color: transparent;
+            transform: rotate(45deg);
+        }
+
+        .faq-item.active .icon-plus::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 7px;
+            width: 2px;
+            height: 16px;
+            background: var(--text-main);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            padding: 40px 0;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .nav-links {
+                display: none; /* 移动端简化：隐藏菜单，实际项目需汉堡菜单 */
+            }
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                电子电路工坊
+            </div>
+            <ul class="nav-links">
+                <li><a href="#overview">原理概览</a></li>
+                <li><a href="#schemes">驱动方案</a></li>
+                <li><a href="#calc">参数计算</a></li>
+                <li><a href="#faq">常见问题</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>继电器驱动电路设计指南</h1>
+        <p>深入解析继电器工作原理，掌握单片机IO口、三极管与MOSFET驱动电路的选型与设计方法，解决高负载驱动难题。</p>
+    </div>
+</section>
+
+<main class="container">
+    <!-- 原理概览 -->
+    <section id="overview">
+        <h2 class="section-title">为什么要使用驱动电路？</h2>
+        <article style="margin-bottom: 30px; color: var(--text-secondary);">
+            <p>继电器是一种利用电磁感应原理控制电路通断的机械开关。虽然继电器内部线圈需要较大的驱动电流（通常为几十毫安到几百毫安），但单片机（MCU）或微控制器的IO口输出能力非常有限（通常仅为几毫安）。</p>
+            <p style="margin-top: 10px;">直接将继电器线圈连接到MCU IO口会导致两个严重后果：一是IO口无法驱动继电器，导致继电器吸合不实或无法吸合；二是继电器吸合/断开时的反电动势会直接击穿或损坏单片机IO口。</p>
+        </article>
+
+        <div class="circuit-overview">
+            <h3>典型继电器驱动电路结构</h3>
+            <div class="circuit-diagram">
+                <!-- SVG 模拟电路图 -->
+                <svg width="400" height="220" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 电源线 -->
+                    <line x1="50" y1="40" x2="50" y2="200" stroke="#333" stroke-width="2"/>
+                    <line x1="350" y1="40" x2="350" y2="200" stroke="#333" stroke-width="2"/>
+                    <text x="40" y="35" font-family="Arial" font-size="12" fill="#333">VCC</text>
+                    <text x="360" y="35" font-family="Arial" font-size="12" fill="#333">GND</text>
+                    
+                    <!-- 继电器线圈 -->
+                    <rect x="100" y="80" width="40" height="80" fill="#eee" stroke="#333" stroke-width="2" rx="4"/>
+                    <text x="120" y="50" font-family="Arial" font-size="12" text-anchor="middle" fill="#333">继电器线圈</text>
+                    <text x="120" y="180" font-family="Arial" font-size="10" text-anchor="middle" fill="#666">RL</text>
+
+                    <!-- 驱动部分 (三极管) -->
+                    <line x1="50" y1="120" x2="90" y2="120" stroke="#333" stroke-width="2"/>
+                    <line x1="140" y1="120" x2="180" y2="120" stroke="#333" stroke-width="2"/>
+                    <!-- 基极电阻 -->
+                    <line x1="90" y1="120" x2="90" y2="100" stroke="#333" stroke-width="2"/>
+                    <line x1="90" y1="100" x2="140" y2="100" stroke="#333" stroke-width="2"/>
+                    <text x="115" y="95" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">R_base</text>
+                    
+                    <!-- 集电极连接线圈 -->
+                    <line x1="180" y1="120" x2="180" y2="140" stroke="#333" stroke-width="2"/>
+                    <line x1="180" y1="140" x2="120" y2="140" stroke="#333" stroke-width="2"/>
+                    <line x1="120" y1="140" x2="120" y2="160" stroke="#333" stroke-width="2"/>
+
+                    <!-- 发射极连接地 -->
+                    <line x1="120" y1="160" x2="120" y2="200" stroke="#333" stroke-width="2"/>
+                    <line x1="120" y1="200" x2="350" y2="200" stroke="#333" stroke-width="2"/>
+
+                    <!-- MCU IO口 -->
+                    <circle cx="70" cy="120" r="10" fill="#0056b3" stroke="#333" stroke-width="2"/>
+                    <text x="70" y="125" font-family="Arial" font-size="10" text-anchor="middle" fill="white">IO</text>
+                </svg>
+            </div>
+            <div class="circuit-legend">
+                <div class="legend-item"><span style="background:#0056b3"></span>MCU IO口</div>
+                <div class="legend-item"><span style="background:#eee; border:1px solid #333"></span>继电器线圈</div>
+                <div class="legend-item"><span style="background:#d4a017"></span>驱动三极管</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 驱动方案 -->
+    <section id="schemes">
+        <h2 class="section-title">主流驱动方案对比</h2>
+        <div class="comparison-grid">
+            <!-- BJT 方案 -->
+            <article class="card bjt">
+                <h3>三极管驱动电路</h3>
+                <p>最经典、最常用的低成本驱动方案，适用于中小功率负载（通常 < 500mA）。</p>
+                <ul>
+                    <li><strong>优点：</strong>电路简单、成本低、元件易得。</li>
+                    <li><strong>缺点：</strong>存在饱和压降，发热量稍大，不适合大电流场景。</li>
+                    <li><strong>适用：</strong>普通电磁继电器、小功率直流电机。</li>
+                </ul>
+                <span class="tag">入门首选</span>
+            </article>
+
+            <!-- MOSFET 方案 -->
+            <article class="card mosfet">
+                <h3>MOSFET 驱动电路</h3>
+                <p>利用场效应管开关特性，驱动效率高，无残留电压，适用于大电流场景。</p>
+                <ul>
+                    <li><strong>优点：</strong>导通电阻小、发热低、响应速度快。</li>
+                    <li><strong>缺点：</strong>需要驱动电压较高（有些需10V+），驱动电路需注意栅极保护。</li>
+                    <li><strong>适用：</strong>大功率继电器、IGBT驱动、大电流LED。</li>
+                </ul>
+                <span class="tag">高功率推荐</span>
+            </article>
+
+            <!-- 专用驱动芯片 -->
+            <article class="card driver">
+                <h3>专用驱动芯片</h3>
+                <p>如ULN2003, TIP120等达林顿阵列，集成二极管保护，抗冲击能力强。</p>
+                <ul>
+                    <li><strong>优点：</strong>自带续流二极管，多路复用，保护MCU。</li>
+                    <li><strong>缺点：</strong>成本略高于三极管，效率不如MOSFET。</li>
+                    <li><strong>适用：</strong>多路继电器控制、工业控制板。</li>
+                </ul>
+                <span class="tag">多路控制</span>
+            </article>
+        </div>
+    </section>
+
+    <!-- 参数计算工具 -->
+    <section id="calc">
+        <h2 class="section-title">关键参数计算</h2>
+        <div class="calc-section">
+            <div class="calc-grid">
+                <!-- 输入区 -->
+                <div>
+                    <h4 style="margin-bottom:15px; color:var(--primary-color);">输入参数设置</h4>
+                    <div class="form-group">
+                        <label>继电器线圈电压 (V)</label>
+                        <input type="number" id="coilV" value="12" min="3" max="48" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label>继电器线圈电流 (mA)</label>
+                        <input type="number" id="coilI" value="100" min="10" max="1000" step="10">
+                    </div>
+                    <div class="form-group">
+                        <label>单片机IO口电压 (V)</label>
+                        <input type="number" id="mcuV" value="5" min="3" max="5.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>三极管电流放大倍数 (hFE)</label>
+                        <input type="number" id="hFE" value="100" min="20" max="1000" step="10">
+                    </div>
+                    <button onclick="calculate()" style="width:100%; padding:12px; background:var(--primary-color); color:white; border:none; border-radius:4px; cursor:pointer; font-weight:600;">开始计算</button>
+                </div>
+                
+                <!-- 结果区 -->
+                <div class="calc-result">
+                    <h4>计算结果建议</h4>
+                    <div class="result-item">
+                        <span>基极所需电流 (Ib)</span>
+                        <span class="result-value" id="resIb">1.00 mA</span>
+                    </div>
+                    <div class="result-item">
+                        <span>基极限流电阻 (Rb)</span>
+                        <span class="result-value" id="resRb">4.3 kΩ</span>
+                    </div>
+                    <div class="result-item">
+                        <span>推荐三极管型号</span>
+                        <span class="result-value" id="resType">S8050 / 2N2222</span>
+                    </div>
+                    <div class="result-item" style="margin-top:15px; border-top:1px dashed #ccc; padding-top:10px;">
+                        <span style="font-size:0.85rem; color:#666;">注意：实际选择Rb时建议取计算值的1/2到1/3，以确保三极管深度饱和。</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq">
+        <h2 class="section-title">常见问题 (FAQ)</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>为什么继电器吸合后，单片机复位或IO口电平变高时，继电器会弹开？</span>
+                <div class="icon-plus"></div>
+            </div>
+            <div class="faq-answer">
+                这通常是因为三极管没有进入深度饱和状态，或者是电源电压不足。当IO口输出电流不足以维持三极管的基极电流时，三极管退出饱和区，继电器线圈电流减小导致弹开。请增大基极电阻或更换hFE更高的三极管。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>必须使用续流二极管吗？</span>
+                <div class="icon-plus"></div>
+            </div>
+            <div class="faq-answer">
+                <strong>必须使用。</strong> 继电器线圈是电感元件，断电时会产生极高的反向感应电动势（可能达到供电电压的10倍以上）。如果没有二极管续流，这个反向高压会击穿驱动三极管或单片机IO口。二极管应反接在继电器线圈两端（负极接VCC，正极接三极管集电极）。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>用NPN三极管驱动继电器，继电器的常开触点能控制220V交流电吗？</span>
+                <div class="icon-plus"></div>
+            </div>
+            <div class="faq-answer">
+                可以。继电器内部的触点部分与驱动线圈部分是绝缘的。当线圈通电吸合时，常开触点闭合，即可在常开触点两端接通220V交流电路。但请注意安全，操作高压电路时务必注意绝缘和隔离。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>如何防止继电器吸合时的抖动（触点弹跳）？</span>
+                <div class="icon-plus"></div>
+            </div>
+            <div class="faq-answer">
+                继电器机械触点在吸合瞬间会有几毫秒到几十毫秒的抖动，导致单片机误判。软件上可以使用去抖动延时，硬件上可以在继电器触点两端并联一个电容（如0.1uF），或者使用带消抖功能的继电器模块。
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>关于本站</h4>
+                <p style="font-size:0.9rem; line-height:1.6;">
+                    专注于分享电子电路设计与硬件开发相关知识，致力于为电子爱好者、学生及工程师提供实用的技术参考。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>相关资源</h4>
+                <ul>
+                    <li><a href="#">元器件选型手册</a></li>
+                    <li><a href="#">电路仿真软件</a></li>
+                    <li><a href="#">PCB设计教程</a></li>
+                    <li><a href="#">焊接技术指南</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系我们</h4>
+                <ul>
+                    <li>邮箱：support@circuitsite.com</li>
+                    <li>地址：电子技术交流区 A栋</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 电子电路工坊. All Rights Reserved. 仅供学习交流使用。</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function calculate() {
+        // 获取输入值
+        const Vcc = parseFloat(document.getElementById('coilV').value);
+        const Icoil = parseFloat(document.getElementById('coilI').value) / 1000; // 转换为安培
+        const Vmcu = parseFloat(document.getElementById('mcuV').value);
+        const hFE = parseFloat(document.getElementById('hFE').value);
+
+        if (isNaN(Vcc) || isNaN(Icoil) || isNaN(Vmcu) || isNaN(hFE)) {
+            alert("请输入有效的数值");
+            return;
+        }
+
+        // 计算基极电流 Ib
+        // Ib = Icoil / hFE
+        let Ib = Icoil / hFE;
+
+        // 计算基极电阻 Rb
+        // Rb = (Vmcu - Vbe) / Ib
+        // Vbe 取 0.7V (硅管)
+        let Vbe = 0.7;
+        let Rb = (Vmcu - Vbe) / Ib;
+
+        // 格式化输出
+        document.getElementById('resIb').textContent = Ib.toFixed(2) + " mA";
+        document.getElementById('resRb').textContent = Math.round(Rb) + " Ω";
+        
+        // 简单推荐型号
+        let typeText = "S8050 / 2N2222";
+        if (Icoil > 0.5) typeText = "TIP120 / TIP102";
+        if (Icoil > 1.0) typeText = "MOSFET (IRF540)";
+        document.getElementById('resType').textContent = typeText;
+    }
+
+    // FAQ 交互逻辑
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+            const isActive = parent.classList.contains('active');
+            
+            // 关闭所有
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+
+            // 如果刚才没打开，则打开当前
+            if (!isActive) {
+                parent.classList.add('active');
+            }
+        });
+    });
+
+    // 页面加载时自动计算一次
+    window.onload = calculate;
+</script>
+
+</body>
+                          </html>

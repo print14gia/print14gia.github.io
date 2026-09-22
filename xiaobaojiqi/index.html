@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="小宝机器人官方网站，提供最新小宝机器人产品介绍、智能语音交互功能演示、家庭场景应用指南、使用教程及常见问题解答。了解小宝机器人如何成为您的智能生活助手。">
+    <meta name="keywords" content="小宝机器人,智能机器人,语音助手,家庭机器人,智能家居">
+    <title>小宝机器人-智能生活伴侣与语音交互指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0066ff;
+            --primary-dark: #004ecc;
+            --accent-color: #ff9f43;
+            --bg-light: #f8f9fa;
+            --text-main: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            background: #eef4ff;
+            color: var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .robot-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.2);
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            background: var(--white);
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: #eef4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--primary-color);
+        }
+
+        .icon-box svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* Application Scenarios */
+        .scenarios {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .scenario-item {
+            position: relative;
+            height: 200px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .scenario-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .scenario-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .scenario-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .scenario-item:hover .scenario-overlay {
+            transform: translateY(0);
+        }
+
+        /* Comparison Table */
+        .comparison {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .check {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .faq-item h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .faq-item p {
+            font-size: 15px;
+            color: var(--text-light);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 12px 36px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .btn-white:hover {
+            background: #f0f0f0;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: var(--white);
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-wrapper nav {
+                display: none;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text p, .hero-tags {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image {
+                margin-top: 40px;
+            }
+
+            .scenario-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                </svg>
+                <span>小宝机器人</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#features">核心功能</a></li>
+                    <li><a href="#scenarios">应用场景</a></li>
+                    <li><a href="#comparison">参数对比</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <a href="#buy" class="btn-primary">立即购买</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <div class="hero-tags">
+                        <span class="tag">AI 智能语音</span>
+                        <span class="tag">家庭陪伴</span>
+                    </div>
+                    <h1>懂你所需，<br>小宝机器人</h1>
+                    <p>新一代家庭智能语音助手，支持多轮对话、智能家居控制与儿童教育。让科技温暖每一个家庭角落，开启您的智能生活新篇章。</p>
+                    <div style="display: flex; gap: 15px; justify-content: flex-start;">
+                        <a href="#buy" class="btn-primary">查看详情</a>
+                        <a href="#demo" class="btn-primary" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);">在线演示</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <!-- 使用 Picsum 生成科技感图片 -->
+                    <img src="https://picsum.photos/seed/robot2024/600/600.jpg" alt="小宝机器人产品展示" class="robot-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>全能核心功能</h2>
+                    <p>专为现代家庭设计的智能解决方案</p>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                        </div>
+                        <h3>智能语音交互</h3>
+                        <p>搭载高精度麦克风阵列，支持远场拾音与降噪，精准识别您指令，响应速度快至 300ms。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        </div>
+                        <h3>智能家居中枢</h3>
+                        <p>一键控制灯光、空调、窗帘，支持米家、天猫精灵等多平台协议，打造全屋智能场景。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </div>
+                        <h3>全天候陪伴</h3>
+                        <p>内置儿童故事、百科问答及情景对话功能，是孩子学习成长的良师益友，家长更放心。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scenarios Section -->
+        <section id="scenarios" class="scenarios">
+            <div class="container">
+                <div class="section-header">
+                    <h2>生活场景应用</h2>
+                    <p>小宝机器人无处不在，让智能触手可及</p>
+                </div>
+                <div class="scenario-grid">
+                    <div class="scenario-item">
+                        <img src="https://picsum.photos/seed/livingroom/400/300.jpg" alt="客厅场景">
+                        <div class="scenario-overlay">
+                            <h4>客厅娱乐</h4>
+                            <p>播放音乐、查询天气、设置闹钟</p>
+                        </div>
+                    </div>
+                    <div class="scenario-item">
+                        <img src="https://picsum.photos/seed/kitchen/400/300.jpg" alt="厨房场景">
+                        <div class="scenario-overlay">
+                            <h4>厨房助手</h4>
+                            <p>播放菜谱语音指导、控制电器</p>
+                        </div>
+                    </div>
+                    <div class="scenario-item">
+                        <img src="https://picsum.photos/seed/bedroom/400/300.jpg" alt="卧室场景">
+                        <div class="scenario-overlay">
+                            <h4>睡眠伴侣</h4>
+                            <p>助眠白噪音、定时语音播报</p>
+                        </div>
+                    </div>
+                    <div class="scenario-item">
+                        <img src="https://picsum.photos/seed/child/400/300.jpg" alt="教育场景">
+                        <div class="scenario-overlay">
+                            <h4>亲子教育</h4>
+                            <p>英语口语陪练、睡前故事时间</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="comparison">
+            <div class="container">
+                <div class="section-header">
+                    <h2>产品参数对比</h2>
+                    <p>小宝机器人 vs 传统语音助手</p>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>功能特性</th>
+                                <th>小宝机器人 Pro</th>
+                                <th>传统手机App</th>
+                                <th>普通音箱</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>远场语音唤醒</td>
+                                <td class="check">✔ 支持</td>
+                                <td class="cross">✘ 需手动操作</td>
+                                <td class="check">✔ 支持</td>
+                            </tr>
+                            <tr>
+                                <td>实体屏幕显示</td>
+                                <td class="check">✔ 10英寸高清屏</td>
+                                <td class="cross">✘ 无</td>
+                                <td class="cross">✘ 无</td>
+                            </tr>
+                            <tr>
+                                <td>多轮对话能力</td>
+                                <td class="check">✔ 强大</td>
+                                <td class="cross">✘ 弱</td>
+                                <td class="cross">✘ 弱</td>
+                            </tr>
+                            <tr>
+                                <td>视频通话功能</td>
+                                <td class="check">✔ 支持</td>
+                                <td class="cross">✘ 需手机辅助</td>
+                                <td class="cross">✘ 不支持</td>
+                            </tr>
+                            <tr>
+                                <td>儿童教育内容</td>
+                                <td class="check">✔ 丰富正版库</td>
+                                <td class="cross">✘ 需自行下载</td>
+                                <td class="cross">✘ 无</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2>常见问题解答</h2>
+                    <p>关于小宝机器人的使用与设置</p>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>小宝机器人需要联网才能使用吗？</h4>
+                        <p>是的，小宝机器人需要连接家庭Wi-Fi网络才能正常工作，包括语音识别、智能家居控制和在线内容获取。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>支持哪些品牌的智能家居设备？</h4>
+                        <p>小宝机器人兼容市面上主流的智能设备品牌，包括米家、华为、涂鸦智能等，覆盖灯光、空调、电视等。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>如何进行家长控制？</h4>
+                        <p>您可以通过手机App设置“儿童模式”，限制特定时段的使用，并过滤不适宜的内容，保障儿童健康使用。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>电池续航如何？</h4>
+                        <p>小宝机器人采用高性能锂电池，满电状态下可连续工作约8小时，支持快速充电，充电1小时可使用半天。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="buy" class="cta">
+            <div class="container">
+                <h2>开启您的智能生活</h2>
+                <p>小宝机器人，让科技更懂你。现在购买，赠送价值199元的专属语音包。</p>
+                <a href="#" class="btn-white">立即购买</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>小宝机器人</h3>
+                    <p>致力于为全球家庭提供最先进的智能语音交互体验，让科技温暖每一个家庭角落。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="#">Pro 版本</a></li>
+                        <li><a href="#">Lite 版本</a></li>
+                        <li><a href="#">配件选购</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>支持</h4>
+                    <ul>
+                        <li><a href="#">使用指南</a></li>
+                        <li><a href="#">售后服务</a></li>
+                        <li><a href="#">联系客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 小宝机器人科技有限公司 版权所有.
+            </div>
+        </div>
+    </footer>
+
+</body>
+                                  </html>

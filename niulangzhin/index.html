@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="牛郎织女的图片专题，提供高清的中国民间传说插图、七夕节插画、传统国画、Q版卡通及创意设计素材。汇集关于牛郎织女神话故事的视觉艺术作品，适合设计参考、节日海报及文化展示。">
+    <meta name="keywords" content="牛郎织女的图片,牛郎织女插画,七夕插画,中国神话故事图片,牛郎织女壁纸">
+    <title>牛郎织女的图片-中国民间传说高清插画与七夕主题素材库</title>
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* 紫色，象征星河 */
+            --secondary-color: #ff69b4; /* 粉色，象征浪漫 */
+            --accent-color: #1a1a2e; /* 深蓝黑，背景 */
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --spacing-unit: 1rem;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 20px;
+            padding: 0.3rem 1rem;
+            align-items: center;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding: 0.3rem;
+            width: 150px;
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2b1055 0%, #7597de 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(white 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            max-width: 1200px;
+            margin: 2rem auto 1rem;
+            padding: 0 var(--spacing-unit);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            border: 1px solid #ddd;
+            background: var(--card-bg);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .image-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            group: ;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-card:hover .card-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+        }
+
+        .image-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .download-btn {
+            background: white;
+            color: var(--accent-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .image-card:hover .download-btn {
+            transform: translateY(0);
+        }
+
+        .card-info {
+            padding: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 4rem 1rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            background: var(--bg-color);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .feature-item h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Usage Guide */
+        .guide-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .guide-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .guide-content p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .guide-image {
+            background: #eee;
+            height: 300px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guide-image::after {
+            content: "应用场景示意图";
+            position: relative;
+            z-index: 2;
+            background: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--accent-color);
+            color: #ccc;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+                margin: 1rem 0;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            .card-image-wrapper {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span>✦</span> 织女星库
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">高清插画</a></li>
+                    <li><a href="#">传统国画</a></li>
+                    <li><a href="#">创意设计</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索牛郎织女相关图片...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>牛郎织女的图片</h1>
+                <p>汇集中国民间传说中关于七夕鹊桥相会的高清视觉素材，涵盖传统插画、现代艺术创作及节日主题设计图。</p>
+                <div class="hero-tags">
+                    <span class="tag">中国传统神话</span>
+                    <span class="tag">七夕节庆</span>
+                    <span class="tag">星河鹊桥</span>
+                    <span class="tag">情侣题材</span>
+                    <span class="tag">插画艺术</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button class="filter-btn active">全部</button>
+            <button class="filter-btn">传统风格</button>
+            <button class="filter-btn">Q版可爱</button>
+            <button class="filter-btn">唯美意境</button>
+            <button class="filter-btn">矢量素材</button>
+            <button class="filter-btn">壁纸高清</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <section class="gallery-section">
+            <div class="gallery-grid">
+                <!-- Item 1 -->
+                <article class="image-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://picsum.photos/seed/niulang1/400/300" alt="牛郎织女传统插画">
+                        <div class="card-overlay">
+                            <a href="#" class="download-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">传统水墨风：银河相会</h3>
+                        <div class="card-meta">
+                            <span class="category-badge">传统插画</span>
+                            <span>2.3k 浏览</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Item 2 -->
+                <article class="image-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://picsum.photos/seed/qixi2/400/300" alt="七夕Q版情侣卡通">
+                        <div class="card-overlay">
+                            <a href="#" class="download-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Q版卡通：甜蜜七夕</h3>
+                        <div class="card-meta">
+                            <span class="category-badge">Q版卡通</span>
+                            <span>1.8k 浏览</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Item 3 -->
+                <article class="image-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://picsum.photos/seed/novel3/400/300" alt="牛郎织女唯美意境图">
+                        <div class="card-overlay">
+                            <a href="#" class="download-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">唯美意境：星河夜语</h3>
+                        <div class="card-meta">
+                            <span class="category-badge">唯美意境</span>
+                            <span>5.1k 浏览</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Item 4 -->
+                <article class="image-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://picsum.photos/seed/ink4/400/300" alt="古风插画">
+                        <div class="card-overlay">
+                            <a href="#" class="download-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">古风仕女：织女形象</h3>
+                        <div class="card-meta">
+                            <span class="category-badge">古风</span>
+                            <span>3.4k 浏览</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Item 5 -->
+                <article class="image-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://picsum.photos/seed/love5/400/300" alt="鹊桥相会">
+                        <div class="card-overlay">
+                            <a href="#" class="download-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">鹊桥相会：经典场景</h3>
+                        <div class="card-meta">
+                            <span class="category-badge">经典场景</span>
+                            <span>4.2k 浏览</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Item 6 -->
+                <article class="image-card">
+                    <div class="card-image-wrapper">
+                        <img src="https://picsum.photos/seed/night6/400/300" alt="星空背景">
+                        <div class="card-overlay">
+                            <a href="#" class="download-btn">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">星空背景：银河图腾</h3>
+                        <div class="card-meta">
+                            <span class="category-badge">背景素材</span>
+                            <span>1.5k 浏览</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="features-container">
+                <div class="feature-item">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>高清原图下载</h3>
+                    <p>提供多种分辨率的高质量图片素材，适用于海报设计、PPT演示及网页排版。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h3>多风格分类</h3>
+                    <p>涵盖传统水墨、现代扁平、二次元、油画等多种艺术风格，满足不同设计需求。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <h3>商用授权保障</h3>
+                    <p>所有素材均经过版权审核，支持个人及商业用途，让创作更无忧。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3>极速检索</h3>
+                    <p>基于语义的智能搜索，快速找到您需要的“牛郎织女的图片”及相关视觉元素。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usage Guide -->
+        <section class="guide-section">
+            <div class="section-header">
+                <h2>如何使用牛郎织女题材图片</h2>
+                <p>了解这类素材在不同场景下的最佳应用方式</p>
+            </div>
+            <div class="guide-grid">
+                <div class="guide-content">
+                    <h3>1. 节日营销海报</h3>
+                    <p>在七夕节期间，商家常使用牛郎织女的图片作为宣传主视觉。选择唯美意境或传统风格的插画，搭配浪漫的文案，能有效传达情感共鸣，吸引目标客户。</p>
+                    <h3>2. 社交媒体配图</h3>
+                    <p>对于社交媒体用户，Q版可爱的牛郎织女图片是表达爱意、晒单或分享节日祝福的热门选择。这类图片轻松幽默，互动性强。</p>
+                    <h3>3. 文化教育展示</h3>
+                    <p>在学校或博物馆的展示中，使用高清的传统线描或工笔画风格的“牛郎织女的图片”，有助于直观展示中国民间传说的故事情节和服饰文化。</p>
+                </div>
+                <div class="guide-image">
+                    <!-- Visual placeholder for guide -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>关于织女星库</h4>
+                <p>致力于为设计师、艺术家及文化爱好者提供优质的中国传统神话视觉素材。</p>
+            </div>
+            <div class="footer-col">
+                <h4>资源分类</h4>
+                <ul>
+                    <li><a href="#">传统插画</a></li>
+                    <li><a href="#">现代设计</a></li>
+                    <li><a href="#">节日壁纸</a></li>
+                    <li><a href="#">矢量素材</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>帮助中心</h4>
+                <ul>
+                    <li><a href="#">版权声明</a></li>
+                    <li><a href="#">使用指南</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">投稿建议</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 织女星库 版权所有 | 仅供学习交流使用</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+</html>

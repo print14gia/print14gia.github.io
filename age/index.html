@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Age - 老龄化社会研究平台，提供全球老龄化数据统计、银发经济趋势分析及养老政策解读，致力于探索老龄化背景下的社会、经济与科技解决方案。">
+    <meta name="keywords" content="Age,老龄化,银发经济,养老政策,人口结构,养老科技">
+    <title>Age - 全球老龄化数据与银发经济趋势分析平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --highlight-color: #e67e22;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--highlight-color);
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -17px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .view-all {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Data Grid */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #ddd;
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .card-text {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-more:hover {
+            color: var(--accent-color);
+        }
+
+        /* Analysis Section */
+        .analysis-section {
+            background-color: #eef2f7;
+            padding: 60px 20px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .analysis-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .analysis-content p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .check-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+
+        .check-icon {
+            color: var(--highlight-color);
+            font-weight: bold;
+        }
+
+        .analysis-image {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Policy Table */
+        .policy-table-wrapper {
+            overflow-x: auto;
+            margin-top: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px 25px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 60px auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-light);
+            display: none;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ecf0f1;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bdc3c7;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            nav {
+                display: none; /* Simple hiding for mobile */
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <a href="#" class="logo">
+            <span>Age</span> 观察室
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#">全球数据</a></li>
+                <li><a href="#">银发经济</a></li>
+                <li><a href="#">政策解读</a></li>
+                <li><a href="#">养老科技</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="btn btn-outline">登录</button>
+            <button class="btn btn-primary">订阅简报</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Age - 重新定义老龄化社会</h1>
+        <p>深度解析全球人口结构变迁，洞察银发经济潜力，为政策制定者与行业从业者提供数据驱动的决策支持。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <h3>70亿+</h3>
+                <p>全球人口总数</p>
+            </div>
+            <div class="stat-item">
+                <h3>10亿+</h3>
+                <p>60岁以上人口</p>
+            </div>
+            <div class="stat-item">
+                <h3>30%</h3>
+                <p>全球老龄化增速</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Data Section -->
+    <section class="container">
+        <div class="section-header">
+            <h2 class="section-title">核心数据洞察</h2>
+            <a href="#" class="view-all">查看完整数据报告 &rarr;</a>
+        </div>
+        <div class="data-grid">
+            <article class="card">
+                <img src="https://picsum.photos/seed/age1/400/250" alt="人口金字塔图" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">人口结构</span>
+                    <h3 class="card-title">全球人口金字塔演变趋势</h3>
+                    <p class="card-text">分析过去50年全球人口年龄结构的剧烈变化，预测未来30年的抚养比变化及对社会保障体系的挑战。</p>
+                    <div class="card-footer">
+                        <span class="read-more">阅读全文</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://picsum.photos/seed/age2/400/250" alt="医疗科技" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">医疗健康</span>
+                    <h3 class="card-title">老龄化背景下的慢性病管理</h3>
+                    <p class="card-text">探讨高血压、糖尿病等老年常见病的流行病学特征，以及数字化医疗如何改善慢病管理效率。</p>
+                    <div class="card-footer">
+                        <span class="read-more">阅读全文</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://picsum.photos/seed/age3/400/250" alt="智能家居" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">智慧养老</span>
+                    <h3 class="card-title">适老化智能家居解决方案</h3>
+                    <p class="card-text">介绍语音控制、跌倒检测传感器等物联网技术在居家养老场景中的应用实践与案例。</p>
+                    <div class="card-footer">
+                        <span class="read-more">阅读全文</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- In-Depth Analysis -->
+    <section class="analysis-section">
+        <div class="container">
+            <div class="analysis-grid">
+                <div class="analysis-content">
+                    <h2>银发经济：下一个万亿级市场</h2>
+                    <p>随着人均寿命的延长和生育率的下降，银发经济已成为全球经济增长的新引擎。这不仅仅是医疗和护理的需求，更涵盖了旅游、文化娱乐、金融理财等全方位的消费升级。</p>
+                    <p>我们通过大数据分析发现，60岁以上的群体在数字化消费上的渗透率正在快速提升，这为科技企业提供了巨大的创新空间。</p>
+                    <ul class="check-list">
+                        <li><span class="check-icon">✓</span> 老年旅游市场年增长率超15%</li>
+                        <li><span class="check-icon">✓</span> 老年教育市场规模持续扩大</li>
+                        <li><span class="check-icon">✓</span> 健康管理服务需求激增</li>
+                    </ul>
+                    <br>
+                    <button class="btn btn-primary">下载《银发经济白皮书》</button>
+                </div>
+                <img src="https://picsum.photos/seed/age4/600/400" alt="银发经济概念图" class="analysis-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Policy Section -->
+    <section class="container">
+        <div class="section-header">
+            <h2 class="section-title">最新养老政策</h2>
+            <a href="#" class="view-all">政策库索引 &rarr;</a>
+        </div>
+        <div class="policy-table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>政策名称</th>
+                        <th>发布部门</th>
+                        <th>核心内容</th>
+                        <th>生效时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>关于推进基本养老服务体系建设的意见</td>
+                        <td>国务院办公厅</td>
+                        <td>明确基本养老服务的对象、内容、标准，建立国家基本养老服务清单。</td>
+                        <td>2023年</td>
+                    </tr>
+                    <tr>
+                        <td>个人养老金制度实施办法</td>
+                        <td>人社部、财政部</td>
+                        <td>建立个人养老金制度，鼓励个人为养老进行储蓄投资，享受税收优惠。</td>
+                        <td>2022年</td>
+                    </tr>
+                    <tr>
+                        <td>智慧健康养老产业发展行动计划</td>
+                        <td>工信部、民政部</td>
+                        <td>推动智能健康养老产品和服务应用，提升养老服务的智能化水平。</td>
+                        <td>2021年</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="container faq-section">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">常见问题解答</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">什么是“积极老龄化”？</div>
+            <div class="faq-answer">
+                积极老龄化是指为老年人提供尽可能的机会，以促进健康、参与和安全的过程。它强调老年人不仅是被照顾的对象，更是社会发展的积极参与者和贡献者。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">如何判断一个地区是否进入老龄化社会？</div>
+            <div class="faq-answer">
+                根据联合国标准，一个国家或地区60岁以上人口占总人口比例达到10%，或65岁以上人口达到7%，即视为进入老龄化社会。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">银发经济主要包含哪些行业？</div>
+            <div class="faq-answer">
+                银发经济涵盖医疗保健、康复辅具、养老社区服务、老年旅游、老年教育、老年金融及老年科技等多个领域。
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>关于Age</h4>
+            <p style="color: #bdc3c7; font-size: 0.9rem; line-height: 1.8;">
+                Age观察室致力于成为连接数据、政策与产业的桥梁，推动社会对老龄化议题的理性认知与积极应对。
+            </p>
+        </div>
+        <div class="footer-col">
+            <h4>数据栏目</h4>
+            <ul>
+                <li><a href="#">全球人口统计</a></li>
+                <li><a href="#">老龄化指数</a></li>
+                <li><a href="#">养老金缺口预测</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>行业服务</h4>
+            <ul>
+                <li><a href="#">养老机构评级</a></li>
+                <li><a href="#">适老化改造指南</a></li>
+                <li><a href="#">老年健康评估</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>联系我们</h4>
+            <ul>
+                <li><a href="#">合作咨询</a></li>
+                <li><a href="#">投稿指南</a></li>
+                <li><a href="#">加入我们</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2023 Age观察室. All Rights Reserved. 仅供演示使用.
+    </div>
+</footer>
+
+<script>
+    // Simple FAQ Accordion Logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+    });
+</script>
+
+</body>
+  </html>
